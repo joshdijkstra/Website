@@ -2,3 +2,7 @@
 .host {
   margin: 0px;
 }
+@font-face {
+  font-family: vcr_osd_mono;
+  src: url(assets/VCR_OSD_MONO.ttf) format("truetype");
+}

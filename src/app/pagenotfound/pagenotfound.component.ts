@@ -29,10 +29,10 @@ export class PagenotfoundComponent implements OnInit {
       s.draw = () => {
         s.background(0);
         s.camera(
-          s.mouseX,
+          s.width * 0.33,
           s.height / 2,
           s.height / 2 / s.tan(s.PI / 6),
-          s.mouseX,
+          s.width * 0.33,
           s.height / 2,
           0,
           0,
@@ -40,22 +40,18 @@ export class PagenotfoundComponent implements OnInit {
           0
         );
         s.translate(s.width / 2, s.height / 2, -100);
-        s.stroke(255);
+        s.stroke(150);
         s.noFill();
 
         s.translate(240, 0, 0);
         s.push();
-        s.rotateZ(s.frameCount * 0.01);
-        s.rotateX(s.frameCount * 0.01);
-        s.rotateY(s.frameCount * 0.01);
-        s.torus(240, 70, 20);
         s.pop();
-        s.rotateX((s.TWO_PI * s.frameCount) / 500);
-        s.rotateX((s.TWO_PI * s.mouseX) / 400);
-        s.rotateX((s.TWO_PI * s.frameCount) / 300);
+        s.rotateX((s.TWO_PI * s.frameCount) / 1500);
+        s.rotateZ((s.TWO_PI * s.frameCount) / 1400);
+        s.rotateY((s.TWO_PI * s.frameCount) / 1300);
 
-        s.sphere(100);
-        s.sphere(200);
+        s.sphere(3100);
+        s.sphere(1200);
       };
 
       s.mouseReleased = () => {

@@ -10,6 +10,7 @@ h1 {
   justify-content: center;
   align-items: center;
   text-align: center;
+  font-family: "vcr_osd_mono", Fallback, sans-serif;
 }
 
 p {
@@ -31,4 +32,14 @@ p {
                                          translateX(-50%) and translateY(-50%) */
   text-align: center;
   color: aliceblue;
+}
+
+.example::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.example {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }
