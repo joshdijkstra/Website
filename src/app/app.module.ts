@@ -5,12 +5,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
+import { HeaderComponent } from './components/header/header.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LandingPageComponent,
-    PagenotfoundComponent
+    PagenotfoundComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,

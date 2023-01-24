@@ -6,3 +6,18 @@
   font-family: vcr_osd_mono;
   src: url(assets/VCR_OSD_MONO.ttf) format("truetype");
 }
+
+@font-face {
+  font-family: Montserrat;
+  src: url(assets/Montserrat-Medium.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: Digital;
+  src: url(assets/DS-DIGI.TTF) format("truetype");
+}
+
+@font-face {
+  font-family: goodTimes;
+  src: url(assets/good_times_rg.otf) format("opentype");
+}
