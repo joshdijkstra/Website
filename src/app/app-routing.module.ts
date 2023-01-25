@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ArtPageComponent } from './art-page/art-page.component';
-import { CodingPageComponent } from './coding-page/coding-page.component';
-import { ContactPageComponent } from './contact-page/contact-page.component';
-import { LandingPageComponent } from './landing-page/landing-page.component';
-import { MusicPageComponent } from './music-page/music-page.component';
-import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
+import { CodingPageComponent } from './pages/coding-page/coding-page.component';
+import { ContactPageComponent } from './pages/contact-page/contact-page.component';
+import { LandingPageComponent } from './pages/landing-page/landing-page.component';
+import { MusicPageComponent } from './pages/music-page/music-page.component';
+import { PagenotfoundComponent } from './pages/pagenotfound/pagenotfound.component';
 
 const routes: Routes = [
   { path: 'home-page', component: LandingPageComponent },

@@ -1,13 +1,12 @@
-import { TagContentType } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import * as p5 from 'p5';
 
 @Component({
-  selector: 'app-pagenotfound',
-  templateUrl: './pagenotfound.component.html',
-  styleUrls: ['./pagenotfound.component.css'],
+  selector: 'app-music-page',
+  templateUrl: './music-page.component.html',
+  styleUrls: ['./music-page.component.css'],
 })
-export class PagenotfoundComponent implements OnInit {
+export class MusicPageComponent implements OnInit {
   canvas: any;
   sw = 2;
   c = [];
