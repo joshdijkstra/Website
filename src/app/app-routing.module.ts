@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ArtPageComponent } from './art-page/art-page.component';
+import { ArtPageComponent } from './pages/art-page/art-page.component';
 import { CodingPageComponent } from './pages/coding-page/coding-page.component';
 import { ContactPageComponent } from './pages/contact-page/contact-page.component';
 import { LandingPageComponent } from './pages/landing-page/landing-page.component';

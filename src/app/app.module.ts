@@ -7,7 +7,7 @@ import { LandingPageComponent } from './pages/landing-page/landing-page.componen
 import { PagenotfoundComponent } from './pages/pagenotfound/pagenotfound.component';
 import { HeaderComponent } from './components/header/header.component';
 import { MusicPageComponent } from './pages/music-page/music-page.component';
-import { ArtPageComponent } from './art-page/art-page.component';
+import { ArtPageComponent } from './pages/art-page/art-page.component';
 import { CodingPageComponent } from './pages/coding-page/coding-page.component';
 import { ContactPageComponent } from './pages/contact-page/contact-page.component';
 
