@@ -10,6 +10,8 @@ import { MusicPageComponent } from './pages/music-page/music-page.component';
 import { ArtPageComponent } from './pages/art-page/art-page.component';
 import { CodingPageComponent } from './pages/coding-page/coding-page.component';
 import { ContactPageComponent } from './pages/contact-page/contact-page.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { SphericalGeometryComponent } from './components/art/spherical-geometry/spherical-geometry.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +23,8 @@ import { ContactPageComponent } from './pages/contact-page/contact-page.componen
     ArtPageComponent,
     CodingPageComponent,
     ContactPageComponent,
+    FooterComponent,
+    SphericalGeometryComponent,
   ],
   imports: [BrowserModule, AppRoutingModule],
   providers: [],
