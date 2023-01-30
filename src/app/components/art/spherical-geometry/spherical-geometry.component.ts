@@ -16,13 +16,9 @@ export class SphericalGeometryComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {
-    // this sketch was modified from the original
-    // https://editor.p5js.org/Janglee123/sketches/HJ2RnrQzN
     const sketch = (s) => {
       s.setup = () => {
         let canvas2 = s.createCanvas(s.windowWidth, s.windowHeight, s.WEBGL);
-        // creating a reference to the div here positions it so you can put things above and below
-        // where the sketch is displayed
         canvas2.parent('sketch-holder');
       };
 
@@ -55,7 +51,6 @@ export class SphericalGeometryComponent implements OnInit {
       };
 
       s.mouseReleased = () => {
-        // modulo math forces the color to swap through the array provided
         this.strokeColor = (this.strokeColor + 1) % this.c.length;
         s.stroke(this.c[this.strokeColor]);
         console.log(`color is now ${this.c[this.strokeColor]}`);
