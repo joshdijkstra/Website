@@ -4,9 +4,11 @@
   "scripts": {
     "ng": "nx",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "nx run-many --target=build --all --parallel",
+    "test": "nx run-many --target=test --all --parallel",
+    "lint": "nx run-many --target=lint --all --parallel",
+    "e2e": "nx run-many --target=e2e --all",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test",
     "postinstall": "node ./decorate-angular-cli.js"
   },
   "private": true,
