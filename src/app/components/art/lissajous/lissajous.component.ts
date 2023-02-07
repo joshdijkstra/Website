@@ -69,7 +69,7 @@ export class LissajousComponent implements OnInit, OnDestroy {
         }
         s.endShape();
         s.noStroke();
-        s.fill('white');
+        s.fill('rgba(255,255,255,1)');
 
         let texta = 'a : ' + this.a;
         let textb = 'b : ' + this.b;

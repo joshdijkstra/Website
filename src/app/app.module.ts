@@ -15,6 +15,9 @@ import { SphericalGeometryComponent } from './components/art/spherical-geometry/
 import { BenzineComponent } from './components/art/benzine/benzine.component';
 import { GolComponent } from './components/art/gol/gol.component';
 import { LissajousComponent } from './components/art/lissajous/lissajous.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BoardComponent } from './pages/chess-page/board/board.component';
+import { ChessPageComponent } from './pages/chess-page/chess-page/chess-page.component';
 
 @NgModule({
   declarations: [
@@ -31,8 +34,10 @@ import { LissajousComponent } from './components/art/lissajous/lissajous.compone
     BenzineComponent,
     GolComponent,
     LissajousComponent,
+    BoardComponent,
+    ChessPageComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule],
+  imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule],
   providers: [],
   bootstrap: [AppComponent],
 })

@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { BenzineComponent } from './components/art/benzine/benzine.component';
 import { LissajousComponent } from './components/art/lissajous/lissajous.component';
 import { ArtPageComponent } from './pages/art-page/art-page.component';
+import { ChessPageComponent } from './pages/chess-page/chess-page/chess-page.component';
 import { CodingPageComponent } from './pages/coding-page/coding-page.component';
 import { ContactPageComponent } from './pages/contact-page/contact-page.component';
 import { LandingPageComponent } from './pages/landing-page/landing-page.component';
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path: 'Contact', component: ContactPageComponent },
   { path: 'Benzine', component: BenzineComponent },
   { path: 'Lissajous', component: LissajousComponent },
+  { path: 'Chess', component: ChessPageComponent },
   { path: '', redirectTo: '/home-page', pathMatch: 'full' },
   { path: '**', pathMatch: 'full', component: PagenotfoundComponent },
 ];
