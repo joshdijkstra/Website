@@ -3,10 +3,12 @@
   <div class="name">Dijkstra</div>
   <nav>
     <ul class="nav_links">
-      <li><a href="/Coding">Coding</a></li>
-      <li><a href="/Dijkstra">Music</a></li>
-      <li><a href="/Art">Art</a></li>
+      <li (click)="navigateTo('/Coding')"><p class="mta">Coding</p></li>
+      <li class="mta" (click)="navigateTo('/Dijkstra')">
+        <p class="mta">Music</p>
+      </li>
+      <li class="mta" (click)="navigateTo('/Art')"><p class="mta">Art</p></li>
     </ul>
   </nav>
-  <a class="cta" href="/Contact"><button>Contact</button></a>
+  <button (click)="navigateTo('/Contact')">Contact</button>
 </header>

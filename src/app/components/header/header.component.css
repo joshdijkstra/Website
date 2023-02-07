@@ -13,6 +13,10 @@ li a button {
   text-decoration: none;
 }
 
+.mta {
+  cursor: pointer;
+}
+
 header {
   display: flex;
   justify-content: space-between;

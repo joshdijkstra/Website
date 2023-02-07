@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import * as p5 from 'p5';
 
 let scl = 500;
@@ -9,7 +9,7 @@ let redu = 10;
   templateUrl: './lissajous.component.html',
   styleUrls: ['./lissajous.component.css'],
 })
-export class LissajousComponent {
+export class LissajousComponent implements OnInit, OnDestroy {
   aSlider: any;
   bSlider: any;
   dSlider: any;
@@ -21,6 +21,11 @@ export class LissajousComponent {
   y: any;
   sy: any;
   history: { x: number; y: number }[] = [];
+  canvas: p5 | undefined;
+
+  ngOnDestroy() {
+    this.canvas?.remove();
+  }
   ngOnInit() {
     const sketch = (s: any) => {
       s.setup = () => {
@@ -78,6 +83,6 @@ export class LissajousComponent {
       };
     };
 
-    const canvas = new p5(sketch);
+    this.canvas = new p5(sketch);
   }
 }

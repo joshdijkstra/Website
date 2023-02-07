@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import * as p5 from 'p5';
 
 @Component({
@@ -6,11 +6,16 @@ import * as p5 from 'p5';
   templateUrl: './spherical-geometry.component.html',
   styleUrls: ['./spherical-geometry.component.css'],
 })
-export class SphericalGeometryComponent implements OnInit {
+export class SphericalGeometryComponent implements OnInit, OnDestroy {
   @Input() speed = 1400;
   sw = 2;
   c = [];
   strokeColor = 0;
+  canvas: p5 | undefined;
+
+  ngOnDestroy() {
+    this.canvas?.remove();
+  }
 
   ngOnInit() {
     const sketch = (s: {
@@ -97,6 +102,6 @@ export class SphericalGeometryComponent implements OnInit {
       };
     };
 
-    const canvas = new p5(sketch);
+    this.canvas = new p5(sketch);
   }
 }
