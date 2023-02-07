@@ -47,13 +47,10 @@ export class LissajousComponent implements OnInit, OnDestroy {
 
       s.draw = () => {
         s.background(0);
-        let val1 = this.aSlider.value();
-        let val2 = this.bSlider.value();
-        let val3 = this.dSlider.value() * (Math.PI / 4);
-
-        this.a = val1;
-        this.b = val2;
-        this.d = val3;
+        this.a = this.aSlider.value();
+        this.b = this.bSlider.value();
+        this.d = this.dSlider.value() * (Math.PI / 4);
+        // this.d = Math.sin((s.frameCount * Math.PI) / 5000);
         this.x =
           this.sx + scl * Math.sin(this.a * (s.frameCount / redu) + this.d);
         this.y = this.sy + scl * Math.sin(this.b * (s.frameCount / redu));
@@ -74,8 +71,8 @@ export class LissajousComponent implements OnInit, OnDestroy {
         s.noStroke();
         s.fill('white');
 
-        let texta = 'a : ' + val1;
-        let textb = 'b : ' + val2;
+        let texta = 'a : ' + this.a;
+        let textb = 'b : ' + this.b;
         let textd = 'delta : ' + this.dSlider.value() + 'π/4';
         s.text(texta, this.aSlider.x * 2 + this.aSlider.width, 50);
         s.text(textb, this.bSlider.x * 2 + this.bSlider.width, 100);
