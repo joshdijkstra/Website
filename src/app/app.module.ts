@@ -14,6 +14,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { SphericalGeometryComponent } from './components/art/spherical-geometry/spherical-geometry.component';
 import { BenzineComponent } from './components/art/benzine/benzine.component';
 import { GolComponent } from './components/art/gol/gol.component';
+import { LissajousComponent } from './components/art/lissajous/lissajous.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { GolComponent } from './components/art/gol/gol.component';
     SphericalGeometryComponent,
     BenzineComponent,
     GolComponent,
+    LissajousComponent,
   ],
   imports: [BrowserModule, AppRoutingModule],
   providers: [],

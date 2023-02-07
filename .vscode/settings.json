@@ -1,4 +1,4 @@
 {
-  "appService.defaultWebAppToDeploy": "/subscriptions/cf0599e7-cf1a-4131-8583-91d74fce1e35/AppServices/subscriptions/cf0599e7-cf1a-4131-8583-91d74fce1e35/resourceGroups/appsvc_linux_centralus/providers/Microsoft.Web/sites/DijkstraWeb",
-  "appService.deploySubpath": "."
+  "appService.defaultWebAppToDeploy": "/subscriptions/cf0599e7-cf1a-4131-8583-91d74fce1e35/AppServices/subscriptions/cf0599e7-cf1a-4131-8583-91d74fce1e35/resourceGroups/dijkstraweb/providers/Microsoft.Web/sites/dijkstraweb",
+  "appService.deploySubpath": "dist\\website"
 }
