@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Pieces } from '../model/Piece';
 
 declare var SockJS: any;
-declare var Stomp :any;
+declare var Stomp: any;
 
 @Component({
   selector: 'dijkstra-web-board',
@@ -30,7 +30,7 @@ export class BoardComponent {
   public callback: any;
 
   initializeWebSocketConnection() {
-    const serverUrl = 'http://localhost:8080/socket';
+    const serverUrl = 'http://localhost:8081/socket';
     const ws = new SockJS(serverUrl);
     this.stompClient = Stomp.over(ws);
     const that = this;
@@ -53,7 +53,7 @@ export class BoardComponent {
   axisHorizontal = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
   url = 'api/v1/game';
 
-  ngOnDestroy(){
+  ngOnDestroy() {
     this.stompClient.disconnect();
   }
 
@@ -65,11 +65,6 @@ export class BoardComponent {
       this.offsetTop = chessboard?.offsetTop;
     }
   }
-
-  // public getBoard = () => {
-  //   let header = new HttpHeaders().set('Content-Type', 'application/json');
-  //   return this.http.get(this.url, { headers: header });
-  // };
 
   public makeMove = (
     atX: number,
@@ -101,7 +96,7 @@ export class BoardComponent {
       this.board != undefined
     ) {
       const moves =
-        this.board.squares[this.activeX][this.activeY].piece.legalMoves;
+        this.board.squares[this.activeX][this.activeY].piece.pseudoMoves;
       const includesArray = (data: any[], arr: any[]) => {
         return data.some(
           (e) => Array.isArray(e) && e.every((o, i) => Object.is(arr[i], o))
@@ -109,7 +104,6 @@ export class BoardComponent {
       };
       return includesArray(moves, [x, y]);
     }
-
     return false;
   };
 
@@ -147,70 +141,19 @@ export class BoardComponent {
     return res;
   };
 
-  // public grabPiece = (e: MouseEvent) => {
-  //   const element = e.target as HTMLElement;
-  //   this.originalX = element.offsetLeft;
-  //   this.originalY = element.offsetTop;
-  //   const x = e.clientX - 50;
-  //   const y = e.clientY - 50;
-  //   element.style.position = 'absolute';
-  //   element.style.left = `${x}px`;
-  //   element.style.top = `${y}px`;
+  public dragStarted = (event: any, i: number, j: number) => {
+    console.log('moving:', i, j);
+    this.activeX = i;
+    this.activeY = 7 - j;
+  };
 
-  //   this.activeElement = element;
-  //   this.activeX = Math.floor((e.clientX - this.offsetLeft) / 100);
-  //   this.activeY = this.playerWhite
-  //     ? Math.abs(Math.ceil((e.clientY - this.offsetTop - 800) / 100))
-  //     : 7 - Math.abs(Math.ceil((e.clientY - this.offsetTop - 800) / 100));
-  // };
-
-  // public movePiece = (e: MouseEvent) => {
-  //   if (this.activeElement) {
-  //     const x = e.clientX - 50;
-  //     const y = e.clientY - 50;
-  //     this.activeElement.style.position = 'absolute';
-  //     this.activeElement.style.left = `${x}px`;
-  //     this.activeElement.style.top = `${y}px`;
-  //   }
-  // };
-
-  // public dropPiece = (e: MouseEvent) => {
-  //   if (this.activeElement) {
-  //     const targetX = Math.floor((e.clientX - this.offsetLeft) / 100);
-  //     const targetY = this.playerWhite
-  //       ? Math.abs(Math.ceil((e.clientY - this.offsetTop - 800) / 100))
-  //       : 7 - Math.abs(Math.ceil((e.clientY - this.offsetTop - 800) / 100));
-  //     if (this.isLegalSquare(targetX, targetY)) {
-  //       // if (
-  //       //   this.board.squares[this.activeX][this.activeY].piece.pieceType ==
-  //       //     Pieces.PAWN &&
-  //       //   (targetY == 0 || targetY == 7)
-  //       // ) {
-  //       //   console.log('PROMOTION');
-  //       //   this.promote(targetX, targetY);
-  //       // } else {
-  //       this.makeMove(this.activeX, this.activeY, targetX, targetY);
-  //       // }
-  //     } else {
-  //       this.activeElement.style.position = 'absolute';
-  //       this.activeElement.style.left = `${this.originalX}px`;
-  //       this.activeElement.style.top = `${this.originalY}px`;
-  //     }
-  //     this.activeElement = null;
-  //     this.activeX = null;
-  //     this.activeY = null;
-  //     this.originalX = null;
-  //     this.originalY = null;
-  //   }
-  // };
-
-  // public promote = (x: number, y: number) => {
-  //   this.promoting = true;
-  //   this.makeMove(this.activeX, this.activeY, x, y);
-  // };
-
-  // public getPromotionPos = () => {
-  //   console.log(this.targetX);
-  //   return Number(this.targetX * 100);
-  // };
+  public dragStopped = (event: any, i: number, j: number) => {
+    let dx = Math.round(event.source._dragRef._activeTransform.x / 100);
+    let dy = (event.source._dragRef._activeTransform.y * -1) / 100;
+    dy = this.playerWhite ? Math.round(dy) : 7 - Math.round(dy);
+    let c = !this.playerWhite ? j : 7 - j;
+    this.makeMove(i, c, i + dx, c + dy);
+    this.activeX = null;
+    this.activeY = null;
+  };
 }

@@ -21,6 +21,7 @@ import { ChessPageComponent } from './pages/chess-page/chess-page/chess-page.com
 import { MatTabsModule } from '@angular/material/tabs';
 import { DevlogComponent } from './pages/chess-page/devlog/devlog.component';
 import { MatCardModule } from '@angular/material/card';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { MatCardModule } from '@angular/material/card';
     BrowserAnimationsModule,
     MatTabsModule,
     MatCardModule,
+    DragDropModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

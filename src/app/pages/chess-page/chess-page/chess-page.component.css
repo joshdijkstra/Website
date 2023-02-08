@@ -2,7 +2,7 @@
   display: grid;
   place-content: center;
   height: 100vh;
-  background-color: rgba(50, 50, 50, 0.4);
+  /* background-color: rgba(50, 50, 50, 0.4); */
 }
 .mat-tab-group {
   margin-bottom: 48px;

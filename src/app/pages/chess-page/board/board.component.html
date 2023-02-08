@@ -1,6 +1,6 @@
 <div class="board" id="chessboard">
   <div *ngFor="let vTile of axisVertical; let j = index" ngClass="">
-    <div cdkDrag
+    <div
       *ngFor="let hTile of axisHorizontal; let i = index"
       class="tile"
       [ngClass]="{
@@ -14,25 +14,27 @@
         blackTile: (i + j) % 2 === 1
       }"
     >
-      <div cdkDrag
+      <div
+        cdkDrag
+        (cdkDragStarted)="dragStarted($event, j, i)"
+        (cdkDragReleased)="dragStopped($event, j, i)"
         class="piece"
         *ngIf="hasPieceOn(j, playerWhite ? 7 - i : i)"
         [ngStyle]="{
           'background-image':
             'url(' + lookUpImage(j, playerWhite ? 7 - i : i) + ')'
         }"
-
       ></div>
     </div>
   </div>
 </div>
 
-<!-- 
-  
+<!--
+
           (mousemove)="movePiece($event)"
         (mousedown)="grabPiece($event)"
         (mouseup)="dropPiece($event)"
-  
+
   <div
   *ngIf="promoting"
   [ngStyle]="{ top: offsetTop + 'px', left: offsetLeft + 'px' }"
