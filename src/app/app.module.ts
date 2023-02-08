@@ -18,6 +18,9 @@ import { LissajousComponent } from './components/art/lissajous/lissajous.compone
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BoardComponent } from './pages/chess-page/board/board.component';
 import { ChessPageComponent } from './pages/chess-page/chess-page/chess-page.component';
+import { MatTabsModule } from '@angular/material/tabs';
+import { DevlogComponent } from './pages/chess-page/devlog/devlog.component';
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -36,8 +39,15 @@ import { ChessPageComponent } from './pages/chess-page/chess-page/chess-page.com
     LissajousComponent,
     BoardComponent,
     ChessPageComponent,
+    DevlogComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatTabsModule,
+    MatCardModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

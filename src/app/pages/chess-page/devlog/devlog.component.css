@@ -1,0 +1,36 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap");
+
+.example-header-image {
+  background-image: url("https://material.angular.io/assets/img/examples/shiba1.jpg");
+  background-size: cover;
+}
+.example-card {
+  max-width: 100%;
+  padding: 1rem;
+  margin: 2rem;
+}
+
+.container {
+  margin: auto;
+  width: 40%;
+  padding: 10px;
+}
+
+mat-card-content {
+  padding: 1rem 4rem;
+}
+li {
+  font-size: 1rem;
+  font-family: "Montserrat", sans-serif;
+  padding: 0.5rem 1rem;
+}
+
+.mat-card-image {
+  width: calc(70%);
+  margin: 0 -16px 16px -16px;
+  margin-right: -16px;
+  margin-left: -16px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
