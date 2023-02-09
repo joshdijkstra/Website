@@ -22,6 +22,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { DevlogComponent } from './pages/chess-page/devlog/devlog.component';
 import { MatCardModule } from '@angular/material/card';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { ThreeSpheresomponent } from './components/art/three-spheres/three-spheres.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     ContactPageComponent,
     FooterComponent,
     SphericalGeometryComponent,
+    ThreeSpheresomponent,
     BenzineComponent,
     GolComponent,
     LissajousComponent,

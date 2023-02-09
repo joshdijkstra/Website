@@ -30,7 +30,7 @@ export class LissajousComponent implements OnInit, OnDestroy {
     const sketch = (s: any) => {
       s.setup = () => {
         const canvas2 = s.createCanvas(s.windowWidth, s.windowHeight);
-        canvas2.parent('sketch-holder');
+        canvas2.parent('lissa-holder');
         s.frameRate(1000);
         this.aSlider = s.createSlider(0, 6, 1, 1);
         this.aSlider.position(20, 100);

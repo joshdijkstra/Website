@@ -24,7 +24,7 @@ export class GolComponent {
       s.setup = () => {
         s.frameRate(20);
         const canvas2 = s.createCanvas(s.windowWidth, s.windowHeight);
-        canvas2.parent('sketch-holder');
+        canvas2.parent('gol-holder');
         this.w = s.windowWidth / josh.length;
         this.columns = josh.length;
         this.rows = josh[0].length;

@@ -2,11 +2,11 @@ import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import * as p5 from 'p5';
 
 @Component({
-  selector: 'dijkstra-web-spherical-geometry',
-  templateUrl: './spherical-geometry.component.html',
-  styleUrls: ['./spherical-geometry.component.css'],
+  selector: 'dijkstra-web-three-spheres',
+  templateUrl: './three-spheres.component.html',
+  styleUrls: ['./three-spheres.component.css'],
 })
-export class SphericalGeometryComponent implements OnInit, OnDestroy {
+export class ThreeSpheresomponent implements OnInit, OnDestroy {
   @Input() speed = 1400;
   @Input() idName = 'sphere-holder';
   sw = 2;
@@ -22,7 +22,7 @@ export class SphericalGeometryComponent implements OnInit, OnDestroy {
       s.setup = () => {
         const canvas2 = s.createCanvas(s.windowWidth, s.windowHeight, s.WEBGL);
         canvas2.style('display', 'block');
-        canvas2.parent('music');
+        canvas2.parent('contact');
       };
 
       s.windowResized = () => {
@@ -34,7 +34,7 @@ export class SphericalGeometryComponent implements OnInit, OnDestroy {
         s.camera(
           s.width * 0.33,
           s.height / 2,
-          s.height / 2 / s.tan(s.PI / 6),
+          s.height / 2 / s.tan(s.PI / 2),
           s.width * 0.33,
           s.height / 2,
           0,
@@ -55,6 +55,15 @@ export class SphericalGeometryComponent implements OnInit, OnDestroy {
 
         s.sphere(3100);
         s.sphere(1200);
+
+        s.push();
+        s.pop();
+
+        s.rotateX((s.TWO_PI * s.frameCount) / this.speed + 100);
+        s.rotateZ((s.TWO_PI * s.frameCount) / this.speed);
+        s.rotateY((s.TWO_PI * s.frameCount) / this.speed - 100);
+
+        s.sphere(2200);
       };
     };
 
