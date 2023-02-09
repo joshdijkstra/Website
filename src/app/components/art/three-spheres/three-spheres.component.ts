@@ -8,7 +8,6 @@ import * as p5 from 'p5';
 })
 export class ThreeSpheresomponent implements OnInit, OnDestroy {
   @Input() speed = 1400;
-  @Input() idName = 'sphere-holder';
   sw = 2;
   strokeColor = 0;
   canvas: any;
@@ -22,7 +21,7 @@ export class ThreeSpheresomponent implements OnInit, OnDestroy {
       s.setup = () => {
         const canvas2 = s.createCanvas(s.windowWidth, s.windowHeight, s.WEBGL);
         canvas2.style('display', 'block');
-        canvas2.parent('contact');
+        canvas2.parent('coding');
       };
 
       s.windowResized = () => {
