@@ -21,6 +21,7 @@ export class BoardComponent {
   offsetLeft: any;
   playerWhite = true;
   promoting = false;
+  serverStatus = false;
 
   constructor() {
     this.initializeWebSocketConnection();
@@ -45,6 +46,7 @@ export class BoardComponent {
           }
         });
         that.stompClient.send('/app/send/message', {});
+        that.serverStatus = true;
       }
     );
   }
@@ -55,6 +57,7 @@ export class BoardComponent {
 
   ngOnDestroy() {
     this.stompClient.disconnect();
+    this.serverStatus = false;
   }
 
   ngOnInit() {
@@ -152,7 +155,15 @@ export class BoardComponent {
     let dy = (event.source._dragRef._activeTransform.y * -1) / 100;
     dy = this.playerWhite ? Math.round(dy) : 7 - Math.round(dy);
     let c = !this.playerWhite ? j : 7 - j;
-    this.makeMove(i, c, i + dx, c + dy);
+    if (
+      this.board.squares[this.activeX][this.activeY].piece.pieceType ==
+        Pieces.PAWN &&
+      (c + dy == 7 || c + dy == 0)
+    ) {
+      this.makeMove(i, c, i + dx, c + dy, 'Q');
+    } else {
+      this.makeMove(i, c, i + dx, c + dy);
+    }
     this.activeX = null;
     this.activeY = null;
   };
