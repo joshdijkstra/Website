@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Pieces } from '../model/Piece';
+import { environment } from './../../../../environments/environment';
 
 declare var SockJS: any;
 declare var Stomp: any;
@@ -31,7 +32,8 @@ export class BoardComponent {
   public callback: any;
 
   initializeWebSocketConnection() {
-    const serverUrl = 'http://localhost:8081/socket';
+    // const serverUrl = 'http://localhost:8081/socket';
+    const serverUrl = environment.chessURL + 'socket';
     const ws = new SockJS(serverUrl);
     this.stompClient = Stomp.over(ws);
     const that = this;
