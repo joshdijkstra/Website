@@ -23,6 +23,7 @@ export class BoardComponent {
   playerWhite = true;
   promoting = false;
   serverStatus = false;
+  sessionId = null;
 
   constructor() {
     this.initializeWebSocketConnection();
@@ -36,15 +37,18 @@ export class BoardComponent {
     const serverUrl = environment.chessURL + 'socket';
     const ws = new SockJS(serverUrl);
     this.stompClient = Stomp.over(ws);
+    this.stompClient.debug = null
     const that = this;
     // tslint:disable-next-line:only-arrow-functions
     this.stompClient.connect(
-      { login: 'mylogin', passcode: 'mypasscode' },
+      
+      { usename: 'mylogin', passcode: 'mypasscode' },
       function (frame: any) {
+        
         that.stompClient.subscribe('/message', (message: any) => {
           if (message.body) {
-            // console.log(JSON.parse(message.body))
-            that.diplayPieces(JSON.parse(message.body));
+            that.sessionId = ws._transport.url.split("/")[5]
+            that.displayPieces(JSON.parse(message.body));
           }
         });
         that.stompClient.send('/app/send/message', {});
@@ -78,6 +82,9 @@ export class BoardComponent {
     toY: number,
     promote?: string
   ) => {
+    let axisHor = this.axisHorizontal
+    axisHor = this.playerWhite ? axisHor : axisHor.reverse()
+    console.log("To: " + toX + " , " + toY)
     var requestBody: String =
       this.axisHorizontal[atX] +
       this.axisVertical[atY] +
@@ -86,6 +93,7 @@ export class BoardComponent {
     if (promote) {
       requestBody += promote;
     }
+    axisHor = this.playerWhite ? axisHor : axisHor.reverse()
     this.stompClient.send('/app/ws-makemove', {}, requestBody);
   };
 
@@ -95,6 +103,7 @@ export class BoardComponent {
   };
 
   public isLegalSquare = (x: number, y: number) => {
+    x = !this.playerWhite ? 7- x : x
     if (
       this.activeX != null &&
       this.activeY != null &&
@@ -113,6 +122,7 @@ export class BoardComponent {
   };
 
   public hasPieceOn = (x: number, y: number) => {
+    x = !this.playerWhite ? 7- x : x
     if (this.board != undefined && this.board.squares[x][y].piece != null) {
       return true;
     } else {
@@ -121,6 +131,7 @@ export class BoardComponent {
   };
 
   public lookUpImage = (x: number, y: number) => {
+    x = !this.playerWhite ? 7- x : x
     const colour = this.board.squares[x][y].piece.isWhite ? 'w' : 'b';
     switch (this.board.squares[x][y].piece.pieceType) {
       case Pieces.PAWN:
@@ -140,32 +151,38 @@ export class BoardComponent {
     }
   };
 
-  public diplayPieces = (res: any) => {
-    this.board = res;
+  public displayPieces = (res: any) => {
+    this.playerWhite = this.findBlackOrWhite(res)
+    this.board = res.gameObjects.board;
     console.log(res);
     return res;
   };
 
+  public findBlackOrWhite = (gameObjects: { player1: any; player2: any; }) => {
+    if (gameObjects != null) {
+      for (let player of [gameObjects.player1, gameObjects.player2]) {
+        if (player.id === this.sessionId) {
+          return player.colour === "white"
+        }
+      }
+    }
+    return true
+  }
+
   public dragStarted = (event: any, i: number, j: number) => {
     console.log('moving:', i, j);
+    i = !this.playerWhite ? 7- i : i
     this.activeX = i;
-    this.activeY = 7 - j;
+    this.activeY = this.playerWhite ?  7 - j : j;
   };
 
   public dragStopped = (event: any, i: number, j: number) => {
+    j = this.playerWhite ? 7-j : j
+    console.log("i, j : " + i + " , " + j)
     let dx = Math.round(event.source._dragRef._activeTransform.x / 100);
     let dy = (event.source._dragRef._activeTransform.y * -1) / 100;
-    dy = this.playerWhite ? Math.round(dy) : 7 - Math.round(dy);
-    let c = !this.playerWhite ? j : 7 - j;
-    if (
-      this.board.squares[this.activeX][this.activeY].piece.pieceType ==
-        Pieces.PAWN &&
-      (c + dy == 7 || c + dy == 0)
-    ) {
-      this.makeMove(i, c, i + dx, c + dy, 'Q');
-    } else {
-      this.makeMove(i, c, i + dx, c + dy);
-    }
+    dy = this.playerWhite ? Math.round(dy) : Math.round(dy) *-1
+    this.makeMove(i, j, i + dx, j + dy  );
     this.activeX = null;
     this.activeY = null;
   };
